@@ -73,3 +73,6 @@ EXTERNAL-IP: <pending>	LoadBalancer not provisioned	Wait or verify default VPC s
 
 ## 🏁 Resume Line
 Deployed and managed Amazon EKS cluster using AWS CloudShell and kubectl, validated connectivity, and deployed a sample Nginx application for testing.
+
+
+=> just install kubectl using aws eks update-kubeconfig --region us-east-1 --name whiz to connect
