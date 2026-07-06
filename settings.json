@@ -1,0 +1,16 @@
+{
+    "http.proxy": "http://127.0.0.1:3128",
+    "http.fetchAdditionalSupport": false,
+    "http.proxyStrictSSL": false,
+    "cursor.general.disableHttp2": true,
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "chat.viewSessions.orientation": "stacked",
+    "http.proxyAuthorization": null,
+    "cursor.general.disableHttp1SSE": true,
+    "http.systemCertificates": false,
+    "http.useLocalProxyConfiguration": false,
+    "makefile.configureOnOpen": false,
+    "http.noProxy": [
+        "api2.cursor.sh api3.cursor.sh api4.cursor.sh *.api5.cursor.sh repo42.cursor.sh *.authentication.cursor.sh authenticator.cursor.sh marketplace.cursorapi.com cursor-cdn.com downloads.cursor.com"
+    ]
+}
