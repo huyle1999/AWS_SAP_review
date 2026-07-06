@@ -1,8 +1,0 @@
-Django
-djangorestframework
-djoser
-django-filter
-PyYAML
-requests
-gunicorn
-psycopg2-binary
