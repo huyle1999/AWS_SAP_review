@@ -52,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'LittleLemonAPI.middleware.ObservabilityMiddleware',    
 ]
 
 ROOT_URLCONF = 'LittleLemon.urls'
@@ -90,7 +91,7 @@ DATABASES = {
         'NAME': 'littlelemon',
         'USER': 'admin123',
         'PASSWORD': 'admin123',
-        'HOST': 'littlelemon-db.cdwysi6s2zrb.ap-northeast-1.rds.amazonaws.com',
+        'HOST': 'littlelemon-db.cdwysi6s2zrb.ap-northeast-1.rds.amazonaws.com'
         'PORT': '5432',
     }
 }

@@ -151,7 +151,12 @@ def orders_view(request):
         try:
             with db_transaction.atomic():
                 # 1. Reserve Stock
-                InventoryService.reserve_stock(items_data)
+                # Trong orders_view POST - CẬP NHẬT dòng gọi reserve_stock
+                InventoryService.reserve_stock(
+                    items_data, 
+                    order=order, 
+                    idempotency_key=getattr(request, 'request_id', None)  # ← THÊM
+                )
                 
                 # 2. Create Order
                 order = Order.objects.create(

@@ -13,6 +13,17 @@ class InventoryService:
         Trừ kho an toàn với SELECT FOR UPDATE chống race condition.
         items_data: [{'menuitem_id': 1, 'quantity': 2}, ...]
         """
+    """
+    Thread-safe inventory reservation với idempotency protection.
+    SELECT FOR UPDATE đảm bảo row-level lock, chống race condition ở tầng DB.
+    """
+    # Kiểm tra idempotency ở tầng service (defense in depth)
+        if idempotency_key:
+            from django.core.cache import cache
+            inv_cache_key = f"inv_reserve:{idempotency_key}"
+            if not cache.add(inv_cache_key, True, 3600):
+                logger.warning(f"Duplicate inventory reservation blocked: {idempotency_key}")
+                return  # Đã reserve rồi, skip
         menu_ids = [item['menuitem_id'] for item in items_data]
         menus = MenuItem.objects.filter(id__in=menu_ids).select_for_update()
         menu_map = {m.id: m for m in menus}
