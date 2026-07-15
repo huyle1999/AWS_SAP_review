@@ -49,3 +49,6 @@ DB Connection Pool,"Tune RDS/Azure DB max connections, sizing instance","Cách s
 
 sudo docker exec -it postgres psql -U django restaurant
 UPDATE auth_user SET password = 'fAkEpAs5w0rd' WHERE username = 'huy'
+docker build -t huyle99/littlelemon-api:v2 .
+docker run -d   --name littlelemon-test   --network bridge   -p 8001:8000   huyle99/littlelemon-api:v2
+docker network connect littlelemon-net littlelemon-test
