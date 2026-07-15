@@ -8,16 +8,11 @@ logger = logging.getLogger(__name__)
 class InventoryService:
     @staticmethod
     @transaction.atomic
-    def reserve_stock(items_data: list[dict], order=None):
+    def reserve_stock(items_data: list[dict], order=None, idempotency_key=None):
         """
-        Trừ kho an toàn với SELECT FOR UPDATE chống race condition.
-        items_data: [{'menuitem_id': 1, 'quantity': 2}, ...]
+        Thread-safe inventory reservation với idempotency protection.
+        SELECT FOR UPDATE đảm bảo row-level lock, chống race condition ở tầng DB.
         """
-    """
-    Thread-safe inventory reservation với idempotency protection.
-    SELECT FOR UPDATE đảm bảo row-level lock, chống race condition ở tầng DB.
-    """
-    # Kiểm tra idempotency ở tầng service (defense in depth)
         if idempotency_key:
             from django.core.cache import cache
             inv_cache_key = f"inv_reserve:{idempotency_key}"

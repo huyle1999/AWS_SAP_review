@@ -88,13 +88,23 @@ WSGI_APPLICATION = 'LittleLemon.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'littlelemon',
-        'USER': 'admin123',
-        'PASSWORD': 'admin123',
-        'HOST': 'littlelemon-db.cdwysi6s2zrb.ap-northeast-1.rds.amazonaws.com'
+        'NAME': 'restaurant',        # POSTGRES_DB
+        'USER': 'django',            # POSTGRES_USER
+        'PASSWORD': 'mypassword',    # POSTGRES_PASSWORD
+        'HOST': 'postgres',          # tên container PostgreSQL
         'PORT': '5432',
     }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'littlelemon',
+#         'USER': 'admin123',
+#         'PASSWORD': 'admin123',
+#         'HOST': 'littlelemon-db.cdwysi6s2zrb.ap-northeast-1.rds.amazonaws.com'
+#         'PORT': '5432',
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -130,7 +140,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

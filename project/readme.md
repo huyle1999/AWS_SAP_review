@@ -45,3 +45,7 @@ Structured Logging,"Thiết kế log pipeline (CloudWatch/Azure Monitor), trace 
 Health Check,"Config ALB/App Gateway probes, zero-downtime deploy strategy","Cách viết /health/live endpoint trong Django"
 Graceful Shutdown,"Set termination grace period, preStop hook, rolling update","Cách xử lý SIGTERM signal trong code"
 DB Connection Pool,"Tune RDS/Azure DB max connections, sizing instance","Cách set CONN_MAX_AGE trong settings.py"
+
+
+sudo docker exec -it postgres psql -U django restaurant
+UPDATE auth_user SET password = 'fAkEpAs5w0rd' WHERE username = 'huy'
