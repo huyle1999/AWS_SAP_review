@@ -9,7 +9,7 @@ Mục tiêu: Hiểu request đi qua những đâu, tác động gì đến DB/Ca
 Trước khi test, vào Django Admin (`/admin/`) tạo sẵn:
 1. **Category**: `Main Course`
 2. **MenuItem**: `Pizza` | Price: `10.00` | **Stock: `10`** (Quan trọng: Để test Inventory Lock)
-3. **User**: `customer1` | Password: `test123`
+3. **User**: `customer1` | Password: `test123asd@`
 4. **Coupon**: `SUMMER10` | Discount: `10%` | Active
 
 ---

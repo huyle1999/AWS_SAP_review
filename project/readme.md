@@ -104,11 +104,11 @@ sudo docker exec -it postgres psql -U django restaurant
 ```
 
 ```sql
-UPDATE auth_user
-SET password = 'fAkEpAs5w0rd'
-WHERE username = 'huy';
+UPDATE auth_user SET password = '123AsD@' WHERE username = 'huy';
 ```
-
+docker exec -it littlelemon-test bash
+python manage.py changepassword huy
+12345asd@
 ---
 
 ## Docker
@@ -131,3 +131,14 @@ docker network connect littlelemon-net littlelemon-test
 
 ```
 ```
+flatpak run rest.insomnia.Insomnia
+
+
+docker build . -t huyle99/littlelemon-api:v3
+docker stop littlelemon-test
+docker rm littlelemon-test
+docker run -d \
+  --name littlelemon-test \
+  --network littlelemon-net \
+  -p 8001:8000 \
+  huyle99/littlelemon-api:v3
