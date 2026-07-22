@@ -2,7 +2,7 @@ from django.db import transaction
 from django.utils import timezone
 from .models import MenuItem, InventoryLog, Order, OrderItem, Cart, Payment, Coupon, AuditLog, Notification
 import logging
-
+import uuid
 logger = logging.getLogger(__name__)
 
 class InventoryService:

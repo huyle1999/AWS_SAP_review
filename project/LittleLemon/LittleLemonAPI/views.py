@@ -9,7 +9,7 @@ from django.db import transaction as db_transaction
 from .models import MenuItem, Cart, Order, OrderItem, Coupon
 from .serializers import MenuItemSerializer, CartSerializer, OrderSerializer, OrderItemSerializer, CouponSerializer
 from .services import InventoryService, CouponService, PaymentService, NotificationService, AuditService
-
+import uuid
 # --- MENU API ---
 class MenuItemsView(generics.ListCreateAPIView):
     queryset = MenuItem.objects.all()
@@ -150,6 +150,11 @@ def orders_view(request):
         
         try:
             with db_transaction.atomic():
+                # 2. Create Order
+                order = Order.objects.create(
+                    user=user,
+                    total_price=total
+                )
                 # 1. Reserve Stock
                 # Trong orders_view POST - CẬP NHẬT dòng gọi reserve_stock
                 InventoryService.reserve_stock(
@@ -158,11 +163,7 @@ def orders_view(request):
                     idempotency_key=getattr(request, 'request_id', None)  # ← THÊM
                 )
                 
-                # 2. Create Order
-                order = Order.objects.create(
-                    user=user,
-                    total_price=total
-                )
+
                 
                 # 3. Create Order Items
                 OrderItem.objects.bulk_create([
